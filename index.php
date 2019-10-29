@@ -85,7 +85,7 @@ $user_name = 'Артём'; // укажите здесь ваше имя
 								   return $rounded." ₽";
 								}
 								else {
-									return number_format($rounded, $decimals = 0 , $dec_point = "." , $thousands_sep = " ")." ₽";
+									return number_format($rounded, 0 , "." , " ")." ₽";
 								}									
 							  };
 							?>						 
