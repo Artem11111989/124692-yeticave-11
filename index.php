@@ -79,6 +79,16 @@ $user_name = 'Артём'; // укажите здесь ваше имя
 						 ["title"=>"Ботинки для сноуборда DC Mutiny Charocal", "category"=>"Ботинки", "price"=>"10999", "picture_URL"=>"img/lot-4.jpg"],
 						 ["title"=>"Куртка для сноуборда DC Mutiny Charocal", "category"=>"Одежда", "price"=>"7500", "picture_URL"=>"img/lot-5.jpg"],
 						 ["title"=>"Маска Oakley Canopy", "category"=>"Разное", "price"=>"5400", "picture_URL"=>"img/lot-6.jpg"]]; ?>
+			<?php function format_sum($num) {
+								$rounded=ceil($num);
+								if ($rounded<1000) {
+								   return $rounded." ₽";
+								}
+								else {
+									return number_format($rounded, $decimals = 0 , $dec_point = "." , $thousands_sep = " ")." ₽";
+								}									
+							  };
+							?>						 
 			<?php foreach ($lots as $key=>$value): ?>    
             <li class="lots__item lot">
                 <div class="lot__image">
@@ -90,7 +100,7 @@ $user_name = 'Артём'; // укажите здесь ваше имя
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$value["price"]; ?><b class="rub"> р</b></span>
+						 	<span class="lot__cost"><?=format_sum($value["price"]); ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
