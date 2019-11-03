@@ -7,4 +7,3 @@ require_once('data.php');
 $page_content = include_template('main.php', ['category' => $category, 'lots' => $lots]);
 $layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная']);
 print($layout_content);
-?>
