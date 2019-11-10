@@ -18,13 +18,18 @@ description TEXT(1000),
 picture CHAR(128),
 start_price CHAR(10),
 date_finish DATETIME,
-bet_step TINYINT(10) 
+bet_step INT,
+author_id INT,
+winner_id INT,
+category_name CHAR(128) 
 );
 
 CREATE TABLE bets (
 id INT AUTO_INCREMENT PRIMARY KEY,
 bet_date DATETIME,
-bet_sum INT(10)
+bet_sum INT,
+user_id INT,
+lot_id INT
 );
 
 CREATE TABLE users (
@@ -32,8 +37,8 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 registration_date DATETIME,
 email CHAR(20) UNIQUE,
 name CHAR(50) NOT NULL UNIQUE,
-password CHAR NOT NULL UNIQUE,
-contacts CHAR
+password CHAR(255) NOT NULL UNIQUE,
+contacts CHAR(255)
 );
 
 CREATE INDEX c_name ON categories(name);
