@@ -22,7 +22,8 @@ INSERT INTO bets
 (id, bet_date, bet_sum, user_id, lot_id)
 VALUES
 ('1', '2019-11-04 10:00', '160499', '1', '2'),
-('2', '2019-11-05 11:00', '160999', '2', '2');
+('2', '2019-11-05 11:00', '160999', '2', '2')
+('3', '2019-11-06 12:00', '8000', '3', '5');
 
 INSERT INTO users
 (id, registration_date, email, name, password, contacts)
@@ -33,14 +34,14 @@ VALUES
 
 SELECT id, name FROM categories;                                                             /* получить id и название из таблицы категорий */
 
-SELECT lots.name, lots.start_price, lots.picture, bets.bet_sum, categories.name FROM lots l  /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
-JOIN categories c ON lots.category_name = categories.id                                      /* из таблицы категорий выбираем имя категорий;  */
-JOIN bets b ON lots.id = bets.lot_id                                                         /* из таблицы ставок выбираем текущую цену на лот */
+SELECT lots.name, lots.start_price, lots.picture, bets.bet_sum, categories.name FROM lots    /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
+JOIN categories ON lots.category_name = categories.id                                        /* из таблицы категорий выбираем имя категорий;  */
+JOIN bets ON lots.id = bets.lot_id                                                           /* из таблицы ставок выбираем текущую цену на лот */
 WHERE lots.date_finish BETWEEN '2019-11-09' AND '2019-12-31'
 AND lots.date_create BETWEEN '2019-11-01 00:00' AND '2019-11-09 00:00';
 
-SELECT lots.name, categories.name FROM lots l                                                /* из таблицы лотов выбираем название лота, */
-JOIN categories c ON lots.category_name = categories.id                                      /* а из таблицы категорий выбираем название категории */   
+SELECT lots.name, categories.name FROM lots                                                  /* из таблицы лотов выбираем название лота, */
+JOIN categories ON lots.category_name = categories.id                                        /* а из таблицы категорий выбираем название категории */   
 WHERE lots.id = '3';
 
 UPDATE lots SET name = '2014 Rossignol District Snowboard NEW!!'                             /* обновили название лота по его идентификатору */
