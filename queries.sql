@@ -1,5 +1,5 @@
 INSERT INTO categories
-(id, name, symbol_code)
+(id, name_cat, symbol_code)
 VALUES
 ('1', 'Доски и лыжи', 'boards'),
 ('2', 'Крепления', 'attachment'),
@@ -9,7 +9,7 @@ VALUES
 ('6', 'Разное', 'other');
 
 INSERT INTO lots
-(id, date_create, name, description, picture, start_price, date_finish, bet_step, author_id, winner_id, category_name)
+(id, date_create, name_lots, description, picture, start_price, date_finish, bet_step, author_id, winner_id, category_name)
 VALUES
 ('1', '2019-10-29 10:30', '2014 Rossignol District Snowboard', 'Описание1', 'img/lot-1.jpg', '10999', '2019-12-24', '500', '1', '0', '1'),
 ('2', '2019-10-30 11:30', 'DC Ply Mens 2016/2017 Snowboard', 'Описание2', 'img/lot-2.jpg', '159999', '2019-11-23', '500', '1', '2', '1'),
@@ -34,13 +34,13 @@ VALUES
 
 SELECT id, name FROM categories;                                                             /* получить id и название из таблицы категорий */
 
-SELECT lots.name, lots.start_price, lots.picture, bets.bet_sum, categories.name FROM lots    /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
+SELECT lots.name_lots, lots.start_price, lots.picture, bets.bet_sum, categories.name FROM lots    /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
 JOIN categories ON lots.category_name = categories.id                                        /* из таблицы категорий выбираем имя категорий;  */
 JOIN bets ON lots.id = bets.lot_id                                                           /* из таблицы ставок выбираем текущую цену на лот */
 WHERE lots.date_finish BETWEEN '2019-11-09' AND '2019-12-31'
 AND lots.date_create BETWEEN '2019-11-01 00:00' AND '2019-11-09 00:00';
 
-SELECT lots.name, categories.name FROM lots                                                  /* из таблицы лотов выбираем название лота, */
+SELECT lots.name_lots, categories.name FROM lots                                                  /* из таблицы лотов выбираем название лота, */
 JOIN categories ON lots.category_name = categories.id                                        /* а из таблицы категорий выбираем название категории */   
 WHERE lots.id = '3';
 
