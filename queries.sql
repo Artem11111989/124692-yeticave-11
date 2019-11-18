@@ -32,21 +32,21 @@ VALUES
 ('2', '2019-11-02 11:00', 'petrov99@yandex.ru', 'Petr', '67890', '89292909090'),
 ('3', '2019-11-03 12:00', 'sidorov00@gmail.ru', 'Sidor', '22222', '89299299090');
 
-SELECT id, name FROM categories;                                                             /* получить id и название из таблицы категорий */
+SELECT id, name_cat FROM categories;                                                                  /* получить id и название из таблицы категорий */
 
-SELECT lots.name, lots.start_price, lots.picture, bets.bet_sum, categories.name FROM lots    /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
-JOIN categories ON lots.category_name = categories.id                                        /* из таблицы категорий выбираем имя категорий;  */
-JOIN bets ON lots.id = bets.lot_id                                                           /* из таблицы ставок выбираем текущую цену на лот */
+SELECT lots.name_lots, lots.start_price, lots.picture, bets.bet_sum, categories.name_cat FROM lots    /* из таблицы лотов выбираем имя лота, начальную цену, ссылку на изображение; */
+JOIN categories ON lots.category_name = categories.id                                                 /* из таблицы категорий выбираем имя категорий;  */
+JOIN bets ON lots.id = bets.lot_id                                                                    /* из таблицы ставок выбираем текущую цену на лот */
 WHERE lots.date_finish BETWEEN '2019-11-09' AND '2019-12-31'
 AND lots.date_create BETWEEN '2019-11-01 00:00' AND '2019-11-09 00:00';
 
-SELECT lots.name, categories.name FROM lots                                                  /* из таблицы лотов выбираем название лота, */
-JOIN categories   ON lots.category_name = categories.id                                      /* а из таблицы категорий выбираем название категории */   
+SELECT lots.name, categories.name FROM lots                                                           /* из таблицы лотов выбираем название лота, */
+JOIN categories ON lots.category_name = categories.id                                                 /* а из таблицы категорий выбираем название категории */   
 WHERE lots.id = '3';
 
-UPDATE lots SET name = '2014 Rossignol District Snowboard NEW!!'                             /* обновили название лота по его идентификатору */
+UPDATE lots SET name = '2014 Rossignol District Snowboard NEW!!'                                      /* обновили название лота по его идентификатору */
 WHERE id = '1';
 
-SELECT bet_date, bet_sum FROM bets                                                           /* из таблицы ставок выбрали ставки для лота с определенным id и */ 
-WHERE lot_id = '2'                                                                           /* отсортировали их по дате от самой ранней до самой поздней */
+SELECT bet_date, bet_sum FROM bets                                                                    /* из таблицы ставок выбрали ставки для лота с определенным id и */ 
+WHERE lot_id = '2'                                                                                    /* отсортировали их по дате от самой ранней до самой поздней */
 ORDER BY bet_date DESC;
