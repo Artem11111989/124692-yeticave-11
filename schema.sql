@@ -6,14 +6,14 @@ USE yeticave;
 
 CREATE TABLE categories (
 id INT AUTO_INCREMENT PRIMARY KEY,
-name CHAR(128),
+name_cat CHAR(128),
 symbol_code CHAR(64)
 );
 
 CREATE TABLE lots (
 id INT AUTO_INCREMENT PRIMARY KEY,
 date_create DATETIME,
-name CHAR(128) NOT NULL,
+name_lots CHAR(128) NOT NULL,
 description TEXT(1000),
 picture CHAR(128),
 start_price CHAR(10),
@@ -41,6 +41,6 @@ password CHAR(255) NOT NULL UNIQUE,
 contacts CHAR(255)
 );
 
-CREATE INDEX c_name ON categories(name);
-CREATE INDEX l_name ON lots(name);
+CREATE INDEX c_name_cat ON categories(name);
+CREATE INDEX l_name_lots ON lots(name);
 CREATE INDEX b_bet_date ON bets(bet_date);
