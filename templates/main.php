@@ -3,7 +3,7 @@
         <p class = "promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class = "promo__list">
             <!--заполните этот список из массива категорий-->
-			<?php $category = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; ?>
+			<?php //$category = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"]; ?>
 			<?php 
 			$index = 0;
 			$num = count($category);
@@ -19,47 +19,15 @@
         <div class = "lots__header">
             <h2>Открытые лоты</h2>
         </div>
-        <ul class = "lots__list">
-		
-		
-		<?php /*$con = mysqli_connect("localhost", "root", "", "yeticave");
-if($con == false) {
-	print("Ошибка подключения: " . mysqli_connect_error());
-}
-else {
-	print("Соединение установлено");
-}
-
-mysqli_set_charset($con, "utf8");
-
-$sql = <<<SQL
-SELECT lots.id, lots.date_create, lots.name, lots.start_price, lots.picture, categories.name FROM lots
-JOIN categories ON lots.category_name = categories.id                                                                                                  
-WHERE lots.date_finish BETWEEN '2019-11-09' AND '2019-12-31'
-AND lots.date_create BETWEEN '2019-11-01 00:00' AND '2019-11-09 00:00'
-ORDER BY lots.date_create DESC
-SQL;
-
-$result = mysqli_query($con, $sql);
-
-if(!$result) {
-	$error = mysqli_error($con);
-	print("Ошибка MySQL: " . $error);
-}
-	
-$lots = mysqli_fetch_all($result, MYSQLI_ASSOC);*/
-
-
-?>
+        <ul class = "lots__list">	
             <!--заполните этот список из массива с товарами-->
-			<?php $lots = [["title" => "2014 Rossignol District Snowboard", "category" => "Доски и лыжи", "price" => "10999", "picture_URL" => "img/lot-1.jpg", "date_end" => "2019-12-24"],
+			<?php /*$lots = [["title" => "2014 Rossignol District Snowboard", "category" => "Доски и лыжи", "price" => "10999", "picture_URL" => "img/lot-1.jpg", "date_end" => "2019-12-24"],
                           ["title" => "DC Ply Mens 2016/2017 Snowboard", "category" => "Доски и лыжи", "price" => "159999", "picture_URL" => "img/lot-2.jpg", "date_end" => "2019-11-23"],
 						  ["title" => "Крепления Union Contact Pro 2015 года размер L/XL", "category" => "Крепления", "price" => "8000", "picture_URL" => "img/lot-3.jpg", "date_end" => "2020-01-01"],
 						  ["title" => "Ботинки для сноуборда DC Mutiny Charocal", "category" => "Ботинки", "price" => "10999", "picture_URL" => "img/lot-4.jpg", "date_end" => "2019-11-18"],
 						  ["title" => "Куртка для сноуборда DC Mutiny Charocal", "category" => "Одежда", "price" => "7500", "picture_URL" => "img/lot-5.jpg", "date_end" => "2019-12-12"],
-						  ["title" => "Маска Oakley Canopy", "category" => "Разное", "price" => "5400", "picture_URL" => "img/lot-6.jpg", "date_end" => "2019-12-01"]]; ?>
-		    <?php foreach ($lots as $pass => $arr) {
-				      foreach ($arr as $key => $value): ?>   
+						  ["title" => "Маска Oakley Canopy", "category" => "Разное", "price" => "5400", "picture_URL" => "img/lot-6.jpg", "date_end" => "2019-12-01"]]; */?>
+		    <?php foreach ($lots as $key => $value): ?>   
             <li class = "lots__item lot">
                 <div class = "lot__image">
                     <img src = "" width = "350" height = "260" alt = "">
@@ -78,8 +46,6 @@ $lots = mysqli_fetch_all($result, MYSQLI_ASSOC);*/
 					</div>
                 </div>
             </li>
-			<?php endforeach; 
-			           }?>
-			
+			<?php endforeach; ?>
         </ul>
     </section>
