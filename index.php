@@ -3,11 +3,13 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 require_once('functions.php');
-require_once('data.php');
-$page_content = include_template('main.php', ['category' => $category, 'lots' => $lots]);
-$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная']);
-print($layout_content);
+require_once('db.php');
+//require_once('data.php');
+//$page_content = include_template('main.php', ['category' => $category, 'lots' => $lots]);
+//$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная']);
+//print($layout_content);
 
+/*
 $con = mysqli_connect("localhost", "root", "", "yeticave");
 if($con == false) {
 	print("Ошибка подключения: " . mysqli_connect_error());
@@ -34,8 +36,6 @@ if(!$result_lots) {
 }
 	
 $lots = mysqli_fetch_all($result_lots, MYSQLI_ASSOC);
-var_dump($lots)."<br>";
-
 
 
 $sql_cat = <<<SQL
@@ -48,7 +48,11 @@ $result_cat = mysqli_query($con, $sql_cat);
 	$error = mysqli_error($con);
 	print("Ошибка MySQL: " . $error);
 }
-	
 $category = mysqli_fetch_all($result_cat, MYSQLI_ASSOC);
-var_dump($category);
+*/
+
+$page_content = include_template('main.php', ['category' => $category, 'lots' => $lots]);
+$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная']);
+print($layout_content);
+
 ?>
