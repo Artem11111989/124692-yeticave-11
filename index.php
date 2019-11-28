@@ -9,8 +9,9 @@ require_once('db.php');
 $category = get_all_categories();
 $lots = get_all_lots();
 
+$header = include_template('header.php', []);
 $page_content = include_template('main.php', ['category' => $category, 'lots' => $lots]);
-$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная', 'category' => $category]);
+$layout_content = include_template('layout.php', ['content' => $page_content, 'title' => 'Главная', 'category' => $category, 'header' => $header]);
 
 print($layout_content);
 
