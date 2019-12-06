@@ -63,7 +63,90 @@ function time_remain($date_end) {                                      // 3 ЛЕ
 вместо <?=...?> используй <?php echo ...?>
 
 <?= не рекомендуется   */
+
+
+function db_get_prepare_stmt($link, $sql, $data = []) {
+    $stmt = mysqli_prepare($link, $sql);
+
+    if ($data) {
+        $types = '';
+        $stmt_data = [];
+
+        foreach ($data as $value) {
+            $type = null;
+
+            if (is_int($value)) {
+                $type = 'i';
+            }
+            else if (is_string($value)) {
+                $type = 's';
+            }
+            else if (is_double($value)) {
+                $type = 'd';
+            }
+
+            if ($type) {
+                $types .= $type;
+                $stmt_data[] = $value;
+            }
+        }
+
+        $values = array_merge([$stmt, $types], $stmt_data);
+
+        $func = 'mysqli_stmt_bind_param';
+        $func(...$values);
+    }
+
+    return $stmt;
+}
 	
+function validateCategory($id, $allowed_list) {
+    if (!in_array($id, $allowed_list)) {
+        return "Указана несуществующая категория";
+    }
+    return null;
+}
 
+function validateLength($value, $min, $max) {
+    if ($value) {
+        $len = strlen($value);
+        if ($len < $min or $len > $max) {
+            return "Значение должно быть от $min до $max символов";
+        }
+    }
+    return null;
+}
 
+function validate_start_price($value) {
+	if ($value <= 0) {
+		return "Значение должно быть больше нуля";
+	}
+	return null;
+}
+
+function validate_bet_step($value) {
+	if(!is_int($value) or $value <= 0) {
+		return "Значение должно быть целым числом больше нуля";
+	}
+	return null;
+}
+
+function is_date_valid(string $date) : bool {
+    $format_to_check = 'Y-m-d';
+    $dateTimeObj = date_create_from_format($format_to_check, $date);
+	
+	if(strtotime(date('Y-m-d')) - strtotime($dateTimeObj) >= 86400 and $dateTimeObj !== false && array_sum(date_get_last_errors()) === 0) {
+		return $dateTimeObj;
+	}
+	else {
+		return "Дата окончания торгов должна быть больше текущей хотя бы на один день";
+	}
+	return null;
+
+    //return $dateTimeObj !== false && array_sum(date_get_last_errors()) === 0;
+}
+
+function getPostVal($name) {
+    return filter_input(INPUT_POST, $name);
+}
 ?>
